@@ -8,7 +8,7 @@ const routesClient = [
         layout: ClientLayout,
         component: Home,
         exact: true
-    }
+    },
 ]
 
 export default routesClient

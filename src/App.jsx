@@ -1,19 +1,25 @@
 import React from "react";
 import "./App.css";
 import { Navigation } from "./routes/Navigation";
-
-function ButtonExampleButton() {
-  return <button className="ui button">Click Here</button>;
-}
+import { ToastContainer } from "react-toastify";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
-    <>
-      <h1>Hello</h1>
-      <button className="ui button">Hola amigos</button>
-      <ButtonExampleButton />
+    <AuthProvider>
       <Navigation />
-    </>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+      />
+    </AuthProvider>
   );
 }
 
