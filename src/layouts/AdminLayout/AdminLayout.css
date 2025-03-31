@@ -1,0 +1,24 @@
+.admin-layout {
+    width: 100%;
+    display: grid;
+    grid: 55px / 1fr;
+    grid-template-areas: 
+    "admin-layout__menu"
+    "admin-layout__content";
+    min-height: 100vh;
+}
+
+.admin-layout__menu {
+    grid-area: admin-layout__menu;
+    background-color: #f8f9fa;
+    border-right: 1px solid #e9ecef;
+    z-index: 100;
+}
+
+.admin-layout__content {
+    grid-area: admin-layout__content;
+    background-color: #f8f9fa;
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 1;
+}

@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { setToken, getToken, removeToken } from "../api/token";
-import { userUser } from "../hooks/userUser";
+import { useUser } from "../hooks/useUser";
 
 export const AuthContext = createContext({
   auth: undefined,
@@ -10,19 +10,25 @@ export const AuthContext = createContext({
 
 export function AuthProvider({ children }) {
   const [auth, setAuth] = useState(undefined);
-  const { getME } = userUser();
+  const { getME } = useUser();
 
   useEffect(() => {
     (async () => {
       const token = getToken();
       if (token) {
-        const me = await getME(token);
-        setAuth({ token, me });
+        try {
+          const me = await getME(token);
+          setAuth({ token, me });
+        } catch (error) {
+          console.error("Error al obtener el usuario:", error);
+          setAuth(null);
+          removeToken(); // Elimina el token si no se puede obtener el usuario
+        }
       } else {
         setAuth(null);
       }
     })();
-  }, [getME]);
+  }, []); // Solo se ejecuta al montar el componente (tener cuidado, puede crear un bucle infinito en fetch)
 
   const login = async (token) => {
     setToken(token);
