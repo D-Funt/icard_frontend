@@ -1,5 +1,6 @@
 import { map } from "lodash";
 import { ModalBasic } from "../../Common/ModalBasic.jsx/ModalBasic";
+import { AddEditUserForm } from "../Users/EditUserForm";
 
 export function TableUsers(props) {
   const { users, updateUser } = props;
@@ -41,7 +42,7 @@ export function TableUsers(props) {
 }
 
 function Actions(props) {
-  const { user } = props;
+  const { user, updateUser } = props;
 
   return (
     <div className="flex gap-2">
@@ -52,7 +53,13 @@ function Actions(props) {
         Editar
       </button>
       <button className="btn btn-secondary">Eliminar</button>
-      <ModalBasic idModal={user.id} user={user} />
+      <ModalBasic idModal={user.id} user={user} updateUser={updateUser}>
+        <AddEditUserForm
+          user={user}
+          handleRefetch={() => document.getElementById(user.id).close()}
+          idModal={user.id}
+        />
+      </ModalBasic>
     </div>
   );
 }

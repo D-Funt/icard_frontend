@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { useUser } from "../../../hooks/useUser";
 
 export function AddEditUserForm(props) {
-  const { handleRefetch } = props;
+  const { handleRefetch, idModal } = props;
   const { addUser } = useUser();
 
   const formik = useFormik({
@@ -114,7 +114,12 @@ export function AddEditUserForm(props) {
           <button type="submit" className="btn" style={{ margin: "10px" }}>
             Save
           </button>
-          <button className="btn" style={{ margin: "10px" }}>
+          <button
+            type="button"
+            className="btn"
+            style={{ margin: "10px" }}
+            onClick={() => document.getElementById(idModal).close()}
+          >
             Close
           </button>
         </div>

@@ -26,15 +26,20 @@ export default function UsersAdmin() {
       <HeaderPage
         title="Usuarios"
         btnTitle="Crear Usuario"
-        btnClick={() => document.getElementById("my_modal_1").showModal()}
+        btnClick={() =>
+          document.getElementById("modal_create_user").showModal()
+        }
       />
       {loading ? (
         <span className="loading loading-spinner loading-xl"></span>
       ) : (
         <TableUsers users={users} updateUser={updateUser} />
       )}
-      <ModalBasic idModal="my_modal_1">
-        <AddEditUserForm handleRefetch={handleRefetch} />
+      <ModalBasic idModal="modal_create_user">
+        <AddEditUserForm
+          handleRefetch={handleRefetch}
+          idModal="modal_create_user"
+        />
       </ModalBasic>
     </>
   );
